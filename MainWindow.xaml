@@ -1,0 +1,119 @@
+﻿<Window x:Class="WIfi_Share.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WIfi_Share"
+        mc:Ignorable="d"
+        Style="{StaticResource MainWindowStyle}"
+        Title="WiFi Sharing" 
+        Height="650" 
+        Width="450"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CornerRadius="15"
+                      GlassFrameThickness="0"
+                      CaptionHeight="40"
+                      ResizeBorderThickness="5"/>
+    </WindowChrome.WindowChrome>
+
+    <Grid>
+        <Border Background="#F4F5F5" 
+                CornerRadius="15" 
+                BorderBrush="#30308C" 
+                BorderThickness="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Title Bar -->
+                <Border Grid.Row="0" 
+                        Background="#30308C" 
+                        CornerRadius="15,15,0,0">
+                    <Grid>
+                        <TextBlock Text="WiFi Password Sharing"
+                                 FontSize="18"
+                                 FontWeight="SemiBold"
+                                 Foreground="White"
+                                 VerticalAlignment="Center"
+                                 HorizontalAlignment="Center"/>
+                    </Grid>
+                </Border>
+
+                <!-- Main Content -->
+                <Grid Grid.Row="1" Margin="30,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- SSID Input -->
+                    <StackPanel Grid.Row="0">
+                        <TextBlock Text="Network Name (SSID)"
+                                 FontSize="14"
+                                 FontWeight="SemiBold"
+                                 Foreground="#30308C"
+                                 Margin="0,0,0,8"/>
+
+                        <!--<TextBox x:Name="tbWifiName" 
+                                 Style="{StaticResource UnderlinedTextBoxStyle}"
+                                 Margin="0,0,0,20"/>-->
+
+                        <ComboBox x:Name="cbWifiName" 
+                                  DropDownOpened ="cbWifiName_DropDownOpened"
+                                  Style="{StaticResource UnderlinedComboBoxStyle}"
+                                  Margin="0,0,0,20"/>       
+                    </StackPanel>
+
+                    <!-- Action Button -->
+                    <Button x:Name="btnGetPassword"
+                            Grid.Row="1"
+                            Content="Get Password &amp; Generate QR"
+                            Style="{StaticResource ActionButtonStyle}"
+                            Click="btnGetPassword_Click"
+                            Margin="0,0,0,25"/>
+
+                    <!-- QR Code -->
+                    <Border Grid.Row="2" 
+                            Background="White"
+                            CornerRadius="10"
+                            BorderBrush="#E0E0E0"
+                            BorderThickness="1"
+                            Padding="15"
+                            HorizontalAlignment="Center"
+                            Margin="0,10,0,15">
+                        <Image x:Name="imgQr"
+                               MaxWidth="250"
+                               MaxHeight="250"
+                               RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Border>
+
+                    <!-- Password Display -->
+                    <TextBlock x:Name="lblPassword"
+                             Grid.Row="3"
+                             FontSize="18"
+                             FontWeight="Medium"
+                             Foreground="#30308C"
+                             TextWrapping="Wrap"
+                             TextAlignment="Center"
+                             Margin="0,0,0,15"/>
+
+                    <!-- Status Message -->
+                    <TextBlock x:Name="txtStatus"
+                               Grid.Row="4"
+                               Foreground="#808080"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               VerticalAlignment="Bottom"
+                               Margin="0,5,0,0"/>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
